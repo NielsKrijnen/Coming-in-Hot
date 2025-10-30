@@ -23,8 +23,6 @@ jobs:
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
-        env:
-          DATABASE_URL: file:./temp.db
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -32,6 +30,8 @@ jobs:
 
       - name: Build and push API image
         uses: docker/build-push-action@v5
+        env:
+          DATABASE_URL: file:./temp.db
         with:
           context: ./api
           push: true
