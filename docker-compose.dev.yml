@@ -15,6 +15,20 @@ services:
     networks:
       - coming-in-hot
 
+  dashboard:
+    build: ./dashboard
+    container_name: coming-in-hot-dashboard
+    ports:
+      - "5173:5173"
+    environment:
+      NODE_ENV: development
+      API_URL: http://localhost:3000
+    volumes:
+      - ./dashboard:/app
+    command: bun run dev -- --host
+    networks:
+      - coming-in-hot
+
 networks:
   coming-in-hot:
     driver: bridge

@@ -4,18 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="648b2813-2eb6-4c2f-84d7-528ee707c1aa" name="Changes" comment="add rcon-client dependency and update Docker configuration; create migration state XML files">
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+    <list default="true" id="648b2813-2eb6-4c2f-84d7-528ee707c1aa" name="Changes" comment="add Docker configuration for dashboard service and initialize Svelte project structure">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/.npmrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/bun.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/src/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/src/app.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/src/app.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/src/lib/assets/favicon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/src/lib/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/src/routes/+layout.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/src/routes/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/static/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/svelte.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/api/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/lib/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/lib/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/routes/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/routes/server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,34 +65,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Docker.Development.executor": "Run",
-    "Docker.docker-compose.dev.yml: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.index.ts.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/home/niels/dev/Minecraft-Manager",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "swagger",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "/home/niels/dev/Minecraft-Manager/api/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Docker.Development.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.dev.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.index.ts.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/niels/dev/Minecraft-Manager&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;swagger&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/niels/dev/Minecraft-Manager/api/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api/src/lib/services" />
@@ -115,7 +124,8 @@
       <updated>1761834597378</updated>
       <workItem from="1761834597765" duration="263000" />
       <workItem from="1761834882371" duration="7027000" />
-      <workItem from="1761856616569" duration="3019000" />
+      <workItem from="1761856616569" duration="3136000" />
+      <workItem from="1761859800512" duration="416000" />
     </task>
     <task id="LOCAL-00001" summary="initialize project structure with Docker, Prisma, and Hono setup">
       <option name="closed" value="true" />
@@ -133,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761859642913</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=".idea">
+      <option name="closed" value="true" />
+      <created>1761859656591</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761859656591</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +160,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initialize project structure with Docker, Prisma, and Hono setup" />
     <MESSAGE value="add rcon-client dependency and update Docker configuration; create migration state XML files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add rcon-client dependency and update Docker configuration; create migration state XML files" />
+    <MESSAGE value=".idea" />
+    <MESSAGE value="add Docker configuration for dashboard service and initialize Svelte project structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Docker configuration for dashboard service and initialize Svelte project structure" />
   </component>
 </project>
