@@ -10,4 +10,4 @@ WORKDIR /app
 RUN apt-get update -y && apt-get install -y openssl
 COPY --from=build /app ./
 EXPOSE 3000
-CMD bunx prisma migrate deploy && bun run ./dist
+CMD ["sh", "-c", "bunx prisma migrate deploy && bun run ./dist"]
