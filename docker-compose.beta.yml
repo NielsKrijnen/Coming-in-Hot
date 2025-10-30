@@ -1,0 +1,29 @@
+services:
+  api:
+    image: ghcr.io/nielskrijnen/coming-in-hot-api:beta
+    container_name: coming-in-hot-api-beta
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: file:./data.db
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /data/mc:/data
+    networks:
+      - coming-in-hot
+
+  dashboard:
+    image: ghcr.io/nielskrijnen/coming-in-hot-dashboard:beta
+    container_name: coming-in-hot-dashboard-beta
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      API_URL: http://localhost:3000
+    networks:
+      - coming-in-hot
+    depends_on:
+      - api
+
+networks:
+  coming-in-hot:
+    driver: bridge

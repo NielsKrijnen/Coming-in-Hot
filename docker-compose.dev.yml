@@ -28,6 +28,8 @@ services:
     command: bun run dev -- --host
     networks:
       - coming-in-hot
+    depends_on:
+      - api
 
 networks:
   coming-in-hot:
