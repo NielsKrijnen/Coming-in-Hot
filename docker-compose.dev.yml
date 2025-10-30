@@ -1,0 +1,14 @@
+services:
+  api:
+    build: ./api
+    container_name: mc-manager-api
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: file:./dev.db
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./api:/app
+      - /data/mc:/data
+    command: bun run dev
