@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="648b2813-2eb6-4c2f-84d7-528ee707c1aa" name="Changes" comment="add Docker configuration for dashboard service and initialize Svelte project structure">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/.npmrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/bun.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/src/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/src/app.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/src/app.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/src/lib/assets/favicon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/src/lib/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/src/routes/+layout.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/src/routes/+page.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/static/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/svelte.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
-    </list>
+    <list default="true" id="648b2813-2eb6-4c2f-84d7-528ee707c1aa" name="Changes" comment="add Docker configuration for dashboard service and initialize Svelte project structure" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,7 +103,7 @@
       <workItem from="1761834597765" duration="263000" />
       <workItem from="1761834882371" duration="7027000" />
       <workItem from="1761856616569" duration="3136000" />
-      <workItem from="1761859800512" duration="416000" />
+      <workItem from="1761859800512" duration="435000" />
     </task>
     <task id="LOCAL-00001" summary="initialize project structure with Docker, Prisma, and Hono setup">
       <option name="closed" value="true" />
@@ -151,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761859656591</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add Docker configuration for dashboard service and initialize Svelte project structure">
+      <option name="closed" value="true" />
+      <created>1761860231688</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1761860231688</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
