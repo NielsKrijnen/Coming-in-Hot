@@ -1,17 +1,17 @@
-import { Hono } from "hono";
-import prisma from "$lib/services/db";
-import { createServer, deleteServer, getServer } from "$lib/server";
-import { Rcon } from "rcon-client";
+import { Hono } from "hono"
+import { Rcon } from "rcon-client"
+import { createServer, deleteServer, getServer } from "$lib/server"
+import prisma from "$lib/services/db"
 
 const router = new Hono()
 
-router.get("/", async c => {
+router.get("/", async (c) => {
   const result = await prisma.server.findMany()
 
   return c.json(result)
 })
 
-router.get("/:id", async c => {
+router.get("/:id", async (c) => {
   const { id } = c.req.param()
 
   const server = await prisma.server.findUnique({
@@ -26,7 +26,7 @@ router.get("/:id", async c => {
   })
 })
 
-router.post("/", async c => {
+router.post("/", async (c) => {
   const date = Date.now()
 
   const container = await createServer({
@@ -47,7 +47,7 @@ router.post("/", async c => {
   return c.json(server)
 })
 
-router.delete("/:id", async c => {
+router.delete("/:id", async (c) => {
   const { id } = c.req.param()
 
   const server = await prisma.server.findUnique({
@@ -65,7 +65,7 @@ router.delete("/:id", async c => {
   return c.json({ success: true })
 })
 
-router.post("/:id/rcon", async c => {
+router.post("/:id/rcon", async (c) => {
   const { id } = c.req.param()
   const { command } = await c.req.json()
 

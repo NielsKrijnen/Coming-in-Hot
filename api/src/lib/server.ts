@@ -1,21 +1,14 @@
-import docker from "$lib/services/docker";
-import { rm } from "node:fs/promises";
-import { network } from "../index";
+import { rm } from "node:fs/promises"
+import docker from "$lib/services/docker"
+import { network } from "../index"
 
-export async function createServer(options: {
-  name: string
-  port: number
-}) {
+export async function createServer(options: { name: string; port: number }) {
   const container = await docker.createContainer({
     Image: "itzg/minecraft-server",
     name: `mc-${options.name}`,
-    Env: [
-      "EULA=TRUE",
-      `SERVER_NAME=${options.name}`,
-      `RCON_PASSWORD=password`
-    ],
+    Env: ["EULA=TRUE", `SERVER_NAME=${options.name}`, `RCON_PASSWORD=password`],
     ExposedPorts: {
-      "25565/tcp": {},
+      "25565/tcp": {}
     },
     NetworkingConfig: {
       EndpointsConfig: {
@@ -24,10 +17,10 @@ export async function createServer(options: {
     },
     HostConfig: {
       PortBindings: {
-        "25565/tcp": [{ HostPort: options.port.toString() }],
+        "25565/tcp": [{ HostPort: options.port.toString() }]
       },
       RestartPolicy: { Name: "unless-stopped" },
-      Binds: [`/data/mc/${options.name}:/data`],
+      Binds: [`/data/mc/${options.name}:/data`]
     }
   })
 
