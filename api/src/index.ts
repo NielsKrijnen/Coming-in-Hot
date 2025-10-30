@@ -17,6 +17,8 @@ export const network = preferred
 
 const app = new Hono().route("/server", server)
 
+export type API = typeof app
+
 Bun.serve({
   port: 3000,
   fetch: app.fetch

@@ -25,6 +25,7 @@ services:
       API_URL: http://localhost:3000
     volumes:
       - ./dashboard:/app
+      - /app/node_modules
     command: bun run dev -- --host
     networks:
       - coming-in-hot

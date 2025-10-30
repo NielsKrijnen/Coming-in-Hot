@@ -22,6 +22,7 @@
     "vite": "^7.1.10"
   },
   "dependencies": {
-    "@sveltejs/adapter-node": "^5.4.0"
+    "@sveltejs/adapter-node": "^5.4.0",
+    "hono": "^4.10.4"
   }
 }

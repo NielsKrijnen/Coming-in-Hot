@@ -5,6 +5,7 @@ RUN bun install && bun run build
 
 FROM oven/bun:latest
 WORKDIR /app
+COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/build ./build
 EXPOSE 3000
 CMD ["bun", "run", "./build"]

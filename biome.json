@@ -22,7 +22,8 @@
     "formatter": {
       "quoteStyle": "double",
       "semicolons": "asNeeded",
-      "trailingCommas": "none"
+      "trailingCommas": "none",
+      "arrowParentheses": "asNeeded"
     }
   },
   "html": {
