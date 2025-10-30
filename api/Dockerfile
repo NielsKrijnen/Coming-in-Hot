@@ -2,7 +2,7 @@ FROM oven/bun:latest AS build
 WORKDIR /app
 COPY . .
 RUN bun install --production
-RUN bunx prisma generate
+RUN export DATABASE_URL=file:./temp.db && bunx prisma generate
 RUN bun run build
 
 FROM oven/bun:latest
