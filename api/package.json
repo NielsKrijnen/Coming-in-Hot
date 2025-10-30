@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "coming-in-hot-api",
   "module": "src/index.ts",
   "type": "module",
   "private": true,
@@ -21,6 +21,7 @@
     "dotenv": "^17.2.3",
     "hono": "^4.10.4",
     "prisma": "^6.18.0",
+    "rcon-client": "^4.2.5",
     "tsx": "^4.20.6"
   }
 }

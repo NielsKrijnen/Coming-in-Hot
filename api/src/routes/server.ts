@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import prisma from "$lib/services/db";
 import { createServer, deleteServer, getServer } from "$lib/server";
+import { Rcon } from "rcon-client";
 
 const router = new Hono()
 
@@ -62,6 +63,32 @@ router.delete("/:id", async c => {
   })
 
   return c.json({ success: true })
+})
+
+router.post("/:id/rcon", async c => {
+  const { id } = c.req.param()
+  const { command } = await c.req.json()
+
+  const server = await prisma.server.findUnique({
+    where: { id: Number(id) }
+  })
+
+  if (!server) return c.notFound()
+
+  const container = await getServer(server.containerId)
+  if (!container) return c.notFound()
+
+  const rcon = await Rcon.connect({
+    host: container.Name.slice(1),
+    port: server.rconPort,
+    password: server.rconPassword
+  })
+
+  const result = await rcon.send(command)
+
+  await rcon.end()
+
+  return c.json({ result })
 })
 
 export default router

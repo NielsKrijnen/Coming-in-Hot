@@ -1,7 +1,7 @@
 services:
   api:
     build: ./api
-    container_name: mc-manager-api
+    container_name: coming-in-hot-api
     ports:
       - "3000:3000"
     environment:
@@ -12,3 +12,9 @@ services:
       - ./api:/app
       - /data/mc:/data
     command: bun run dev
+    networks:
+      - coming-in-hot
+
+networks:
+  coming-in-hot:
+    driver: bridge

@@ -1,5 +1,6 @@
 import docker from "$lib/services/docker";
 import { rm } from "node:fs/promises";
+import { network } from "../index";
 
 export async function createServer(options: {
   name: string
@@ -10,11 +11,21 @@ export async function createServer(options: {
     name: `mc-${options.name}`,
     Env: [
       "EULA=TRUE",
-      `SERVER_NAME=${options.name}`
+      `SERVER_NAME=${options.name}`,
+      `RCON_PASSWORD=password`
     ],
-    ExposedPorts: { "25565/tcp": {} },
+    ExposedPorts: {
+      "25565/tcp": {},
+    },
+    NetworkingConfig: {
+      EndpointsConfig: {
+        [network]: {}
+      }
+    },
     HostConfig: {
-      PortBindings: { "25565/tcp": [{ HostPort: options.port }] },
+      PortBindings: {
+        "25565/tcp": [{ HostPort: options.port.toString() }],
+      },
       RestartPolicy: { Name: "unless-stopped" },
       Binds: [`/data/mc/${options.name}:/data`],
     }
