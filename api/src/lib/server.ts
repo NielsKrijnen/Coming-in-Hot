@@ -41,5 +41,8 @@ export async function deleteServer(containerId: string) {
   await container.stop()
   await container.remove()
 
-  await rm(`/data/mc/${info.Name}`, { recursive: true, force: true })
+  await rm(`/data/${info.Name.replace("mc-", "")}`, {
+    recursive: true,
+    force: true
+  })
 }

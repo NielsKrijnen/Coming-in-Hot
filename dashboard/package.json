@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@sveltejs/adapter-node": "^5.4.0",
-    "hono": "^4.10.4"
+    "hono": "^4.10.4",
+    "zod": "^4.1.12"
   }
 }

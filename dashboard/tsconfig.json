@@ -1,7 +1,7 @@
 {
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types", "../backend/src"],
+    "typeRoots": ["./node_modules/@types", "../api/src"],
     "allowJs": true,
     "checkJs": true,
     "esModuleInterop": true,

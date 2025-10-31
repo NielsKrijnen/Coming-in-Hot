@@ -1,11 +1,14 @@
+import { zValidator } from "@hono/zod-validator"
 import { Hono } from "hono"
 import { Rcon } from "rcon-client"
+import { z } from "zod"
 import { createServer, deleteServer, getServer } from "$lib/server"
 import prisma from "$lib/services/db"
+import type { Server } from "../../generated/prisma/client"
 
 const router = new Hono()
   .get("/", async c => {
-    const result = await prisma.server.findMany()
+    const result: Server[] = await prisma.server.findMany()
 
     return c.json(result, 200)
   })
@@ -33,7 +36,7 @@ const router = new Hono()
       port: 25565
     })
 
-    const server = await prisma.server.create({
+    const server: Server = await prisma.server.create({
       data: {
         containerId: container.id,
         name: date.toString(),
@@ -43,7 +46,7 @@ const router = new Hono()
       }
     })
 
-    return c.json(server)
+    return c.json(server, 200)
   })
 
   .delete("/:id", async c => {
@@ -53,7 +56,7 @@ const router = new Hono()
       where: { id: Number(id) }
     })
 
-    if (!server) return c.notFound()
+    if (!server) return c.text("Not Found", 404)
 
     await deleteServer(server.containerId)
 
@@ -61,33 +64,42 @@ const router = new Hono()
       where: { id: server.id }
     })
 
-    return c.json({ success: true })
+    return c.json({ success: true }, 200)
   })
 
-  .post("/:id/rcon", async c => {
-    const { id } = c.req.param()
-    const { command } = await c.req.json()
+  .post(
+    "/:id/rcon",
+    zValidator(
+      "form",
+      z.object({
+        command: z.string()
+      })
+    ),
+    async c => {
+      const { id } = c.req.param()
+      const { command } = c.req.valid("form")
 
-    const server = await prisma.server.findUnique({
-      where: { id: Number(id) }
-    })
+      const server = await prisma.server.findUnique({
+        where: { id: Number(id) }
+      })
 
-    if (!server) return c.notFound()
+      if (!server) return c.text("Not Found", 404)
 
-    const container = await getServer(server.containerId)
-    if (!container) return c.notFound()
+      const container = await getServer(server.containerId)
+      if (!container) return c.text("Not Found", 404)
 
-    const rcon = await Rcon.connect({
-      host: container.Name.slice(1),
-      port: server.rconPort,
-      password: server.rconPassword
-    })
+      const rcon = await Rcon.connect({
+        host: container.Name.slice(1),
+        port: server.rconPort,
+        password: server.rconPassword
+      })
 
-    const result = await rcon.send(command)
+      const result = await rcon.send(command)
 
-    await rcon.end()
+      await rcon.end()
 
-    return c.json({ result })
-  })
+      return c.json({ result }, 200)
+    }
+  )
 
 export default router

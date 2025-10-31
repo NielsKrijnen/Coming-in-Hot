@@ -15,6 +15,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.7.4",
     "@prisma/client": "^6.18.0",
     "@types/node": "^24.9.2",
     "dockerode": "^4.0.9",
