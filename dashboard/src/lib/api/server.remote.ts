@@ -41,6 +41,7 @@ export const create = command(async () => {
   const response = await locals.hc.server.$post()
 
   if (response.ok) {
+    await list().refresh()
     return await response.json()
   } else {
     error(response.status, response.statusText)
