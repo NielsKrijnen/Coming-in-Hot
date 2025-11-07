@@ -8,7 +8,12 @@ export async function createServer(options: { name: string; port: number }) {
   const container = await docker.createContainer({
     Image: "itzg/minecraft-server",
     name: `mc-${options.name}`,
-    Env: ["EULA=TRUE", `SERVER_NAME=${options.name}`, `RCON_PASSWORD=password`],
+    Env: [
+      "EULA=TRUE",
+      `SERVER_NAME=${options.name}`,
+      `RCON_PASSWORD=password`,
+      "VERSION=1.20.1"
+    ],
     ExposedPorts: {
       "25565/tcp": {}
     },

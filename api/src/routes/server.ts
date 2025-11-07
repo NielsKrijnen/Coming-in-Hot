@@ -1,4 +1,5 @@
 import { zValidator } from "@hono/zod-validator"
+import type { ContainerInspectInfo } from "dockerode"
 import { Hono } from "hono"
 import { Rcon } from "rcon-client"
 import { z } from "zod"
@@ -13,20 +14,31 @@ const router = new Hono()
     return c.json(result, 200)
   })
 
-  .get("/:id", async c => {
-    const { id } = c.req.param()
+  .get(
+    "/:id",
+    zValidator(
+      "param",
+      z.object({
+        id: z.number()
+      })
+    ),
+    async c => {
+      const { id } = c.req.valid("param")
 
-    const server = await prisma.server.findUnique({
-      where: { id: Number(id) }
-    })
+      const server = await prisma.server.findUnique({
+        where: { id }
+      })
 
-    if (!server) return c.notFound()
+      if (!server) return c.text("Not Found", 404)
 
-    return c.json({
-      ...server,
-      container: await getServer(server.containerId)
-    })
-  })
+      const data: Server & { container: ContainerInspectInfo } = {
+        ...server,
+        container: await getServer(server.containerId)
+      }
+
+      return c.json(data, 200)
+    }
+  )
 
   .post("/", async c => {
     const date = Date.now()

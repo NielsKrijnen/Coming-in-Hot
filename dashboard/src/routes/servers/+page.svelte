@@ -12,7 +12,9 @@
   {#each await Servers.list() as server}
     <Card.Root>
       <Card.Header>
-        <Card.Title>{server.name}</Card.Title>
+        <Card.Title>
+          <a href="/servers/{server.id}" class="hover:underline">{server.name}</a>
+        </Card.Title>
       </Card.Header>
       <Card.Content>
         <p>Server ID: {server.id}</p>

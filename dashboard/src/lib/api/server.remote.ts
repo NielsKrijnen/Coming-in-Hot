@@ -13,6 +13,20 @@ export const list = query(async () => {
   }
 })
 
+export const get = query(z.number(), async id => {
+  const { locals } = getRequestEvent()
+
+  const response = await locals.hc.server[":id"].$get({
+    param: { id: id.toString() }
+  })
+
+  if (response.ok) {
+    return await response.json()
+  } else {
+    error(response.status, response.statusText)
+  }
+})
+
 export const sendCommand = command(
   z.object({
     serverId: z.number(),
