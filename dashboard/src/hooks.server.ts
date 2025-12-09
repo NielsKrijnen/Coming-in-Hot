@@ -1,4 +1,4 @@
-import { error, type Handle, type HandleServerError } from "@sveltejs/kit"
+import { error, type Handle } from "@sveltejs/kit"
 import { hc } from "hono/client"
 import type { API } from "$api"
 import { env } from "$env/dynamic/private"
@@ -11,8 +11,4 @@ export const handle: Handle = async ({ resolve, event }) => {
   })
 
   return resolve(event)
-}
-
-export const handleError: HandleServerError = async context => {
-  console.log(context)
 }

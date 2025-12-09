@@ -1,10 +1,12 @@
 <script lang="ts">
   import "../app.css"
   import { LayoutDashboard, Server } from "@lucide/svelte"
+  import { page } from "$app/state"
+  import { GitHub } from "$lib/components/icons"
   // noinspection ES6UnusedImports
-  import { Sidebar } from "$lib/components/ui"
+  import { Breadcrumb, Button, Separator, Sidebar } from "$lib/components/ui"
 
-  let { children } = $props()
+  let { data, children } = $props()
 </script>
 
 <svelte:boundary>
@@ -47,6 +49,40 @@
       </Sidebar.Content>
     </Sidebar.Root>
     <Sidebar.Inset>
+      <header class="flex h-16 shrink-0 items-center gap-2 border-b pr-3">
+        <div class="flex items-center gap-2 px-3">
+          <Sidebar.Trigger/>
+          <Separator orientation="vertical" class="mr-2 h-4"/>
+          <Breadcrumb.Root>
+            <Breadcrumb.List>
+              {#each page.data.breadcrumbs as breadcrumb, i (breadcrumb.href)}
+                {#if breadcrumb.href === page.url.pathname}
+                  <Breadcrumb.Item>
+                    <Breadcrumb.Page>{breadcrumb.name}</Breadcrumb.Page>
+                  </Breadcrumb.Item>
+                {:else}
+                  <Breadcrumb.Item>
+                    <Breadcrumb.Link href={breadcrumb.href}>
+                      {breadcrumb.name}
+                    </Breadcrumb.Link>
+                  </Breadcrumb.Item>
+                  {#if i < page.data.breadcrumbs.length - 1}
+                    <Breadcrumb.Separator/>
+                  {/if}
+                {/if}
+              {/each}
+            </Breadcrumb.List>
+          </Breadcrumb.Root>
+        </div>
+        <Button
+          variant="outline"
+          href="https://github.com/NielsKrijnen/Coming-in-Hot"
+          target="_blank"
+          class="ml-auto"
+        >
+          <GitHub/>
+        </Button>
+      </header>
       <div class="p-4 h-full overflow-y-auto">
         {@render children()}
       </div>
