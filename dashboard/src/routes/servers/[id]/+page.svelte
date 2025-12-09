@@ -38,11 +38,11 @@
     <Item.Content>
       <Item.Title>CPU Usage</Item.Title>
       <Item.Description>
-        <Progress value={stats.cpu}/>
+        <Progress value={stats.cpu.percent.normalized}/>
       </Item.Description>
     </Item.Content>
     <Item.Actions>
-      {stats.cpu.toFixed(1)} %
+      {stats.cpu.percent.normalized.toFixed(1)} %
     </Item.Actions>
   </Item.Root>
 

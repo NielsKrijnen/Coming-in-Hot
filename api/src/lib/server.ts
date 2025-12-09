@@ -1,7 +1,10 @@
 import { rm } from "node:fs/promises"
+import * as os from "node:os"
 import type { ContainerStats } from "dockerode"
 import docker from "$lib/services/docker"
 import { network } from "../index"
+
+const TOTAL_CORES = os.cpus().length
 
 export async function createServer(options: { name: string; port: number }) {
   const IMAGE = "itzg/minecraft-server" as const
@@ -45,7 +48,13 @@ export function getServer(containerId: string) {
 }
 
 export type ServerStats = {
-  cpu: number
+  cpu: {
+    percent: {
+      raw: number
+      normalized: number
+    }
+    cores: number
+  }
   memory: {
     bytes: number
     percent: number
@@ -60,8 +69,16 @@ export async function getServerStats(
     stream: false
   })
 
+  const cpuPercent = getCPUUsage(stats)
+
   return {
-    cpu: getCPUUsage(stats),
+    cpu: {
+      percent: {
+        raw: cpuPercent,
+        normalized: cpuPercent / TOTAL_CORES
+      },
+      cores: cpuPercent / 100
+    },
     memory: getMemoryUsage(stats)
   }
 }
