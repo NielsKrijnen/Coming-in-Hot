@@ -3,7 +3,13 @@ import type { ContainerInspectInfo } from "dockerode"
 import { Hono } from "hono"
 import { Rcon } from "rcon-client"
 import { z } from "zod"
-import { createServer, deleteServer, getServer } from "$lib/server"
+import {
+  createServer,
+  deleteServer,
+  getServer,
+  getServerStats,
+  type ServerStats
+} from "$lib/server"
 import prisma from "$lib/services/db"
 import type { Server } from "../../generated/prisma/client"
 
@@ -19,7 +25,7 @@ const router = new Hono()
     zValidator(
       "param",
       z.object({
-        id: z.number()
+        id: z.coerce.number()
       })
     ),
     async c => {
@@ -37,6 +43,24 @@ const router = new Hono()
       }
 
       return c.json(data, 200)
+    }
+  )
+
+  .get(
+    "/:id/stats",
+    zValidator("param", z.object({ id: z.coerce.number() })),
+    async c => {
+      const { id } = c.req.valid("param")
+
+      const server = await prisma.server.findUnique({
+        where: { id }
+      })
+
+      if (!server) return c.text("Not Found", 404)
+
+      const stats: ServerStats = await getServerStats(server.containerId)
+
+      return c.json(stats, 200)
     }
   )
 

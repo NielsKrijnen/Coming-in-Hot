@@ -1,12 +1,15 @@
 import { rm } from "node:fs/promises"
+import type { ContainerStats } from "dockerode"
 import docker from "$lib/services/docker"
 import { network } from "../index"
 
 export async function createServer(options: { name: string; port: number }) {
-  await docker.pull("itzg/minecraft-server")
+  const IMAGE = "itzg/minecraft-server" as const
+
+  await docker.pull(IMAGE)
 
   const container = await docker.createContainer({
-    Image: "itzg/minecraft-server",
+    Image: IMAGE,
     name: `mc-${options.name}`,
     Env: [
       "EULA=TRUE",
@@ -39,6 +42,56 @@ export async function createServer(options: { name: string; port: number }) {
 export function getServer(containerId: string) {
   const container = docker.getContainer(containerId)
   return container.inspect()
+}
+
+export type ServerStats = {
+  cpu: number
+  memory: {
+    bytes: number
+    percent: number
+  }
+}
+
+export async function getServerStats(
+  containerId: string
+): Promise<ServerStats> {
+  const container = docker.getContainer(containerId)
+  const stats = await container.stats({
+    stream: false
+  })
+
+  return {
+    cpu: getCPUUsage(stats),
+    memory: getMemoryUsage(stats)
+  }
+}
+
+function getCPUUsage(stats: ContainerStats) {
+  const cpuDelta =
+    stats.cpu_stats.cpu_usage.total_usage -
+    stats.precpu_stats.cpu_usage.total_usage
+
+  const systemDelta =
+    stats.cpu_stats.system_cpu_usage - stats.precpu_stats.system_cpu_usage
+
+  const cpuCount =
+    stats.cpu_stats.online_cpus || stats.cpu_stats.cpu_usage.percpu_usage.length
+
+  if (systemDelta > 0 && cpuDelta > 0) {
+    return (cpuDelta / systemDelta) * cpuCount * 100
+  }
+
+  return 0
+}
+
+function getMemoryUsage(stats: ContainerStats) {
+  const usage = stats.memory_stats.usage
+  const limit = stats.memory_stats.limit
+
+  return {
+    bytes: usage,
+    percent: (usage / limit) * 100
+  }
 }
 
 export async function deleteServer(containerId: string) {

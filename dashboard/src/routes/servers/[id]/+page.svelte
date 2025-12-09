@@ -13,4 +13,5 @@
 
 Type: {env.TYPE}
 Version: {env.VERSION}
-{JSON.stringify(env, null, 2)}
+
+{JSON.stringify(await Servers.getStats(Number(params.id)))}
