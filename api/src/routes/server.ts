@@ -60,7 +60,7 @@ const router = new Hono()
 
       const stats: ServerStats = await getServerStats(server.containerId)
 
-      return c.json(stats, 200)
+      return c.json<ServerStats>(stats, 200)
     }
   )
 
