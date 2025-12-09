@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@hono/zod-validator": "^0.7.4",
-    "@prisma/client": "^6.19.0",
+    "@prisma/client": "^6.18.0",
     "@types/node": "^24.9.2",
     "dockerode": "^4.0.9",
     "dotenv": "^17.2.3",
     "hono": "^4.10.4",
-    "prisma": "^6.19.0",
+    "prisma": "^6.18.0",
     "rcon-client": "^4.2.5",
     "tsx": "^4.20.6",
     "zod": "^4.1.12"

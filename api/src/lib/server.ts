@@ -3,7 +3,7 @@ import docker from "$lib/services/docker"
 import { network } from "../index"
 
 export async function createServer(options: { name: string; port: number }) {
-  await docker.pull("itzg/minecraft-server:latest")
+  await docker.pull("itzg/minecraft-server")
 
   const container = await docker.createContainer({
     Image: "itzg/minecraft-server",
