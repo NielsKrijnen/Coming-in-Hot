@@ -1,9 +1,9 @@
 -- CreateTable
 CREATE TABLE "Server" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "local" BOOLEAN NOT NULL,
-    "managed" BOOLEAN NOT NULL,
-    "ip" TEXT NOT NULL,
+    "containerId" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "port" INTEGER NOT NULL,
     "rconPort" INTEGER NOT NULL,
     "rconPassword" TEXT NOT NULL
 );

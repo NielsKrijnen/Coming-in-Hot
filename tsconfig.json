@@ -1,7 +1,6 @@
 {
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types", "../api/src"],
     "allowJs": true,
     "checkJs": true,
     "esModuleInterop": true,
@@ -10,7 +9,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "moduleResolution": "node"
+    "moduleResolution": "bundler"
   },
-  "include": ["./src/**/*", "../api/src/**/*"]
+  "include": ["src/**/*", ".svelte-kit/ambient.d.ts"]
 }
